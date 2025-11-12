@@ -7,6 +7,10 @@ in 5.4 minor versions.
 To get the diff for a specific change, go to https://github.com/symfony/symfony/commit/XXX where XXX is the change hash
 To get the diff between two versions, go to https://github.com/symfony/symfony/compare/v5.4.0...v5.4.1
 
+* 5.4.50 (2025-11-12)
+
+ * security #cve-2025-64500 [HttpFoundation] Fix parsing pathinfo with no leading slash (nicolas-grekas)
+
 * 5.4.49 (2024-11-29)
 
  * bug #59023 [HttpClient] Fix streaming and redirecting with NoPrivateNetworkHttpClient (nicolas-grekas)
