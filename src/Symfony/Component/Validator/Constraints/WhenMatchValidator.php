@@ -28,14 +28,9 @@ class WhenMatchValidator extends ConstraintValidator
         $variables['this'] = $context->getObject();
         $variables['context'] = $context;
 
-        if ($constraint->expression instanceof \Closure) {
-            $result = ($constraint->expression)($context->getObject());
-        } else {
-            $result = $this->getExpressionLanguage()->evaluate($constraint->expression, $variables);
-        }
+        $result = $this->evaluate($constraint->expression, $context, $variables);
 
         foreach ($constraint->constraints as $k => $v) {
-
             if ($result !== $k) {
                 continue;
             }
@@ -46,6 +41,15 @@ class WhenMatchValidator extends ConstraintValidator
 
         $context->getValidator()->inContext($context)
             ->validate($value, $constraint->default);
+    }
+
+    private function evaluate(Expression|\Closure $expression, ExecutionContextInterface $context, array $variables): mixed
+    {
+        if ($expression instanceof \Closure) {
+            return ($expression)($context->getObject());
+        } else {
+            return $this->getExpressionLanguage()->evaluate($expression, $variables);
+        }
     }
 
     private function getExpressionLanguage(): ExpressionLanguage
