@@ -30,13 +30,17 @@ class WhenMatchValidator extends ConstraintValidator
 
         $result = $this->evaluate($constraint->expression, $context, $variables);
 
-        foreach ($constraint->constraints as $k => $v) {
-            if ($result !== $k) {
+        foreach ($constraint->constraints as $arm => $armConstraint) {
+            if ($arm instanceof Expression || $arm instanceof \Closure) {
+                $arm = $this->evaluate($arm, $context, $variables);
+            }
+
+            if ($result !== $arm) {
                 continue;
             }
 
             $context->getValidator()->inContext($context)
-                ->validate($value, $v);
+                ->validate($value, $armConstraint);
         }
 
         $context->getValidator()->inContext($context)
