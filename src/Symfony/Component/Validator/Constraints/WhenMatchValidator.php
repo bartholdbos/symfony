@@ -1,0 +1,59 @@
+<?php
+
+namespace Symfony\Component\Validator\Constraints;
+
+use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Exception\LogicException;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+
+class WhenMatchValidator extends ConstraintValidator
+{
+    public function __construct(private ?ExpressionLanguage $expressionLanguage = null)
+    {
+    }
+
+    public function validate(mixed $value, Constraint $constraint): void
+    {
+        if (!$constraint instanceof WhenMatch) {
+            throw new UnexpectedTypeException($constraint, WhenMatch::class);
+        }
+
+        $context = $this->context;
+        $variables = $constraint->values;
+        $variables['value'] = $value;
+        $variables['this'] = $context->getObject();
+        $variables['context'] = $context;
+
+        if ($constraint->expression instanceof \Closure) {
+            $result = ($constraint->expression)($context->getObject());
+        } else {
+            $result = $this->getExpressionLanguage()->evaluate($constraint->expression, $variables);
+        }
+
+        foreach ($constraint->constraints as $k => $v) {
+
+            if ($result !== $k) {
+                continue;
+            }
+
+            $context->getValidator()->inContext($context)
+                ->validate($value, $v);
+        }
+
+        $context->getValidator()->inContext($context)
+            ->validate($value, $constraint->default);
+    }
+
+    private function getExpressionLanguage(): ExpressionLanguage
+    {
+        if (!class_exists(ExpressionLanguage::class)) {
+            throw new LogicException(\sprintf('The "symfony/expression-language" component is required to use the "%s" validator. Try running "composer require symfony/expression-language".', __CLASS__));
+        }
+
+        return $this->expressionLanguage ??= new ExpressionLanguage();
+    }
+}
