@@ -48,7 +48,14 @@ return (new PhpCsFixer\Config())
         'no_useless_return' => true,
         'php_unit_attributes' => true,
         'protected_to_private' => true,
-        'random_api_migration' => true,
+        'random_api_migration' =>  [
+            'replacements' => [
+                'mt_getrandmax' => 'getrandmax',
+                'mt_rand' => 'random_int',
+                'mt_srand' => 'srand',
+                'rand' => 'random_int',
+            ],
+        ],
         'static_lambda' => true,
     ])
     ->setRuleCustomisationPolicy(new class implements PhpCsFixer\Config\RuleCustomisationPolicyInterface {
