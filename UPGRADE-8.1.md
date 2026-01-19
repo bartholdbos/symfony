@@ -29,6 +29,11 @@ HttpKernel
 
  * Deprecate passing a non-flat list of attributes to `Controller::setController()`
 
+Security
+--------
+
+ * Deprecate `SameOriginCsrfTokenManager::onKernelResponse()`, `SameOriginCsrfTokenManager::clearCookies()` and `SameOriginCsrfTokenManager::persistStrategy()`; this logic is now handled automatically by `SameOriginCsrfListener`
+
 Uid
 ---
 
