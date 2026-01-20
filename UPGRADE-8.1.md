@@ -8,6 +8,11 @@ Read more about this in the [Symfony documentation](https://symfony.com/doc/8.1/
 
 If you're upgrading from a version below 8.0, follow the [8.0 upgrade guide](UPGRADE-8.0.md) first.
 
+Console
+-------
+
+ * [BC BREAK] Add `object` support to input options and arguments' default by changing the `$default` type to `mixed` in `InputArgument`, `InputOption`, `#[Argument]` and `#[Option]`
+
 DependencyInjection
 -------------------
 
