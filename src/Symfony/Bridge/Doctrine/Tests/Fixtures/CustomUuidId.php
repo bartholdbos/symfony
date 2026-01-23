@@ -9,17 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\PropertyInfo\Tests\Fixtures;
+namespace Symfony\Bridge\Doctrine\Tests\Fixtures;
 
-class PseudoTypeDummy
+use Symfony\Component\Uid\Uuid;
+
+final class CustomUuidId extends Uuid
 {
-    /**
-     * @var scalar
-     */
-    public $scalarPseudoType;
-
-    /**
-     * @var unknownpseudo
-     */
-    public $unknownPseudoType;
 }
