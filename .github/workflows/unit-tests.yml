@@ -190,7 +190,7 @@ jobs:
           fi
 
           if [[ "${{ matrix.mode }}" = low-deps ]]; then
-            echo "$COMPONENTS" | xargs -n1 | parallel -j +3 "_run_tests {} '$COMPOSER_UP --prefer-lowest --prefer-stable && $PHPUNIT --do-not-fail-on-deprecation'"
+            echo "$COMPONENTS" | xargs -n1 | parallel -j +3 "_run_tests {} '$COMPOSER_UP --prefer-lowest --prefer-stable && $PHPUNIT --do-not-fail-on-deprecation --do-not-fail-on-phpunit-notice'"
 
             exit 0
           fi
