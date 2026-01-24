@@ -7,6 +7,37 @@ in 6.4 minor versions.
 To get the diff for a specific change, go to https://github.com/symfony/symfony/commit/XXX where XXX is the change hash
 To get the diff between two versions, go to https://github.com/symfony/symfony/compare/v6.4.0...v6.4.1
 
+* 6.4.32 (2026-01-24)
+
+ * bug #63160 [DependencyInjection] Fix alias chain inversion when deprecated alias points to decorated service (amateescu)
+ * bug #62852 [Cache] Fix DSN auth not passed to clusters in RedisTrait (wikando-ck)
+ * bug #62959 [PropertyInfo] do not parse `scalar` as an object (xabbuh)
+ * bug #63136 [Serializer] Fix is/has/can accessor naming to strip prefix unless colliding (nicolas-grekas)
+ * bug #63144 [Form] Fix `OrderedHashMap` auto-increment logic with mixed keys (yoeunes)
+ * bug #63154 [Form] don't skip custom view transformers while normalizing submitted newlines (xabbuh)
+ * bug #63051 [DoctrineBridge] Fix custom type based on Uid on entity loader (IndraGunawan)
+ * bug #63108 [ErrorHandler] fix parsing of complexe type (jderusse)
+ * bug #63126 [PropertyInfo] Throw when phpdocumentor/reflection-docblock v6 is in use (branch 6.4 only) (nicolas-grekas)
+ * bug #63113 [Form] Fix ICU 72+ whitespace handling in `DateTimeToLocalizedStringTransformer` (roukmoute)
+ * bug #63052 [Serializer] Fix NameConverter not detecting wrong input format with `allow_extra_attributes=false` (xersion22)
+ * bug #63064 [Translation] Fix handling of empty lines in CsvFileLoader (fnogatz)
+ * bug #63043 [FrameworkBundle] Check for console package before register `CommandDataCollector` (gimler)
+ * bug #63016 [FrameworkBundle] Ensure a fresh container is used after cache warmup in `KernelTestCase` (lyrixx)
+ * bug #62762 [Finder] Fix `Finder::append()` breaking generic typing contract (jack-worman)
+ * bug #63004 [Process] Ignore invalid env var names (nicolas-grekas)
+ * bug #63005 [FrameworkBundle] Revert destination file change for secrets:decrypt-to-local (nicolas-grekas)
+ * bug #63012 [HttpFoundation] Fix double-prefixing of session keys when using redis/memcached (nicolas-grekas)
+ * bug #63001 [Scheduler] Fix array to string conversion in `#[AsCronTask]` arguments (serhiilabs)
+ * bug #62953 [Serializer] Fix removing nested values (gnoddep)
+ * bug #62988 [Messenger] Fix DBALv4 support by replacing trigger by explicit pg_notify() (nicolas-grekas)
+ * bug #62795 [FrameworkBundle] Fix mocking decorated services in tests (nicolas-grekas)
+ * bug #62838 [Serializer] Fix serialization of method with same name than property (VincentLanglet)
+ * bug #62872 [Messenger] Fix processing batches (HypeMC)
+ * bug #62848 [HttpKernel] Fix using HTTP Cache in worker mode (nicolas-grekas, stakovicz)
+ * bug #62954 [HttpClient] Fix existing headers must be replaced in CachingHttpClient (Toflar)
+ * bug #62884 [Form][TwigBridge] Prevent cached block prefixes from leaking across nested collections (nicolas-grekas)
+ * bug #62886 [PropertyAccess][PropertyInfo][Serializer] Skip methods that look like getters but return void or never (jordikroon)
+
 * 6.4.31 (2025-12-31)
 
  * bug #62873 [Cache] Fix namespace of chained pools when using another chain as template (nicolas-grekas)
