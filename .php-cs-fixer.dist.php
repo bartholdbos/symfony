@@ -48,7 +48,7 @@ return (new PhpCsFixer\Config())
         'no_useless_return' => true,
         'php_unit_attributes' => true,
         'protected_to_private' => true,
-        'random_api_migration' =>  [
+        'random_api_migration' => [
             'replacements' => [
                 'mt_getrandmax' => 'getrandmax',
                 'mt_rand' => 'random_int',
