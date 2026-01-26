@@ -31,6 +31,7 @@ return (new PhpCsFixer\Config())
     ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setRules([
         '@PHP8x1Migration' => true, // take lowest version from `git grep -h '"php"' **/composer.json | uniq | sort`
+        '@PHP8x1Migration:risky' => true,
         '@PHPUnit9x1Migration:risky' => true, // take version from src/Symfony/Bridge/PhpUnit/phpunit.xml.dist#L4
         '@Symfony' => true,
         '@Symfony:risky' => true,
@@ -44,15 +45,9 @@ return (new PhpCsFixer\Config())
                 '/s',
             ]),
         ],
+        'declare_strict_types' => false, // part of PHP?x?Migration:risky, awaits https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/9384
         'php_unit_attributes' => true,
-        'random_api_migration' => [ // PHP migration awaits
-            'replacements' => [
-                'mt_getrandmax' => 'getrandmax',
-                'mt_rand' => 'random_int',
-                'mt_srand' => 'srand',
-                'rand' => 'random_int',
-            ],
-        ],
+        'void_return' => false, // part of PHP?x?Migration:risky, usage to be concluded
     ])
     ->setRuleCustomisationPolicy(new class implements PhpCsFixer\Config\RuleCustomisationPolicyInterface {
         public function getPolicyVersionForCache(): string
