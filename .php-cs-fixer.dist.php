@@ -44,11 +44,8 @@ return (new PhpCsFixer\Config())
                 '/s',
             ]),
         ],
-        'no_useless_else' => true,
-        'no_useless_return' => true,
         'php_unit_attributes' => true,
-        'protected_to_private' => true,
-        'random_api_migration' => [
+        'random_api_migration' => [ // PHP migration awaits
             'replacements' => [
                 'mt_getrandmax' => 'getrandmax',
                 'mt_rand' => 'random_int',
@@ -56,7 +53,6 @@ return (new PhpCsFixer\Config())
                 'rand' => 'random_int',
             ],
         ],
-        'static_lambda' => true,
     ])
     ->setRuleCustomisationPolicy(new class implements PhpCsFixer\Config\RuleCustomisationPolicyInterface {
         public function getPolicyVersionForCache(): string
