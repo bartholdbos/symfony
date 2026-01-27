@@ -177,7 +177,7 @@
         "doctrine/orm": "<3.4",
         "egulias/email-validator": "~3.0.0",
         "masterminds/html5": "<2.6",
-        "phpdocumentor/reflection-docblock": "<5.2",
+        "phpdocumentor/reflection-docblock": "<5.2|>=6",
         "phpdocumentor/type-resolver": "<1.5.1",
         "phpunit/phpunit": "<7.5|9.1.2",
         "symfony/flex": "<2.10"
