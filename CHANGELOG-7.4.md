@@ -7,6 +7,25 @@ in 7.4 minor versions.
 To get the diff for a specific change, go to https://github.com/symfony/symfony/commit/XXX where XXX is the change hash
 To get the diff between two versions, go to https://github.com/symfony/symfony/compare/v7.4.0...v7.4.1
 
+* 7.4.5 (2026-01-28)
+
+ * bug #63213 [DependencyInjection] Fix lazy proxy type resolution for decorated services (nicolas-grekas)
+ * bug #63212 [HttpClient] Fix dealing with truncated streams after headers arrived with CurlHttpClient (nicolas-grekas)
+ * bug #63208 [PropertyInfo] Fix DocBlock resolution for inherited promoted properties (yoeunes)
+ * bug #63170 [RateLimiter] Persist state when consuming negative tokens (jhogervorst)
+ * bug #63137 [HttpFoundation] Fix PdoSessionHandler charset-collation mismatch with the Doctrine DBAL (samy-mahmoudi)
+ * bug #63211 [HttpClient] Fix dealing with multiple levels of AsyncResponse decoration (nicolas-grekas)
+ * bug #63202 [Messenger] Only send `UNLISTEN` query if we are actively listening (jwage)
+ * security #cve-2026-24739 [Process] Fix escaping for MSYS on Windows (nicolas-grekas)
+ * bug #63206 [PropertyInfo] Conflict with phpdocumentor/reflection-docblock >= 6 (all branches) (nicolas-grekas)
+ * bug #63204 [PropertyInfo] Fix resolution of self/parent types in inherited DocBlocks (yoeunes)
+ * bug #63141 [ObjectMapper] apply conditions to constructor arguments (soyuka)
+ * bug #63195 [FrameworkBundle] Clean `http_cache` dir in `KernelTestCase::ensureKernelShutdown()` (nicolas-grekas)
+ * bug #63164 [Process] Fix escaping for MSYS on Windows (nicolas-grekas)
+ * bug #63192 [Finder] Fix appending empty iterators (nicolas-grekas)
+ * bug #63193 [PropertyInfo] Conflict with phpdocumentor/reflection-docblock >= 6 (branch 6.4 only) (nicolas-grekas)
+ * bug #63191  [Serializer] Apply `#[Ignore]` to the right metadata (VincentLanglet)
+
 * 7.4.4 (2026-01-24)
 
  * bug #63160 [DependencyInjection] Fix alias chain inversion when deprecated alias points to decorated service (amateescu)
