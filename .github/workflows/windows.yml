@@ -55,6 +55,7 @@ jobs:
           "extension=php_xsl.dll" >> php.ini
           "extension=php_mbstring.dll" >> php.ini
           "extension=php_openssl.dll" >> php.ini
+          "extension=php_curl.dll" >> php.ini
           cd ${{ github.workspace }}
           iwr -outf composer.phar https://getcomposer.org/download/latest-stable/composer.phar
 
@@ -76,18 +77,15 @@ jobs:
 
           php phpunit install
 
+          # curl makes composer fast, but we want to disable it for this job
+          (Get-Content -Raw c:\php\php.ini) -replace 'extension=php_curl\.dll', ';extension=php_curl.dll' | Set-Content c:\php\php.ini
+
       - name: Run tests
         run: |
           $env:Path = 'c:\php;' + $env:Path
-          $x = 0
 
           Remove-Item -Path src\Symfony\Bridge\PhpUnit -Recurse
-          mv src\Symfony\Component\HttpClient\phpunit.xml.dist src\Symfony\Component\HttpClient\phpunit.xml
-          php phpunit src\Symfony --exclude-group tty --exclude-group benchmark --exclude-group intl-data --exclude-group network --exclude-group transient-on-windows || ($x = 1)
-          # HttpClient tests need to run separately, they block when run with other components' tests concurrently
-          php phpunit src\Symfony\Component\HttpClient || ($x = 1)
-
-          exit $x
+          php phpunit src\Symfony --exclude-group tty --exclude-group benchmark --exclude-group intl-data --exclude-group transient-on-windows
 
   windows-all-extensions:
     name: x86 / all extensions / lowest-php
@@ -179,10 +177,5 @@ jobs:
       - name: Run tests
         run: |
           $env:Path = 'c:\php;' + $env:Path
-          $x = 0
 
-          php phpunit src\Symfony --exclude-group tty --exclude-group benchmark --exclude-group intl-data --exclude-group network --exclude-group transient-on-windows --requires-php-extension apcu --requires-php-extension curl --requires-php-extension fileinfo --requires-php-extension igbinary --requires-php-extension intl --requires-php-extension openssl --requires-php-extension pdo_sqlite --requires-php-extension redis --requires-php-extension sodium || ($x = 1)
-          # HttpClient tests need to run separately, they block when run with other components' tests concurrently
-          php phpunit src\Symfony\Component\HttpClient --requires-php-extension curl --requires-php-extension openssl || ($x = 1)
-
-          exit $x
+          php phpunit src\Symfony --exclude-group tty --exclude-group benchmark --exclude-group intl-data --exclude-group transient-on-windows --requires-php-extension apcu --requires-php-extension curl --requires-php-extension fileinfo --requires-php-extension igbinary --requires-php-extension intl --requires-php-extension openssl --requires-php-extension pdo_sqlite --requires-php-extension redis --requires-php-extension sodium
