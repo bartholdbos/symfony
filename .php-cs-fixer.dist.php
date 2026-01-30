@@ -61,7 +61,7 @@ return (new PhpCsFixer\Config())
                 'php_unit_attributes' => static function (SplFileInfo $file) {
                     // temporary hack due to bug: https://github.com/symfony/symfony/issues/62734
                     if (!$file instanceof Symfony\Component\Finder\SplFileInfo) {
-                        return true;
+                        return false;
                     }
 
                     $relativePathname = $file->getRelativePathname();
