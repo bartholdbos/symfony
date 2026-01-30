@@ -40,6 +40,11 @@ HttpKernel
    }
    ```
 
+Security
+--------
+
+ * Deprecate `SameOriginCsrfTokenManager::onKernelResponse()`, `SameOriginCsrfTokenManager::clearCookies()` and `SameOriginCsrfTokenManager::persistStrategy()`; this logic is now handled automatically by `SameOriginCsrfListener`
+
 Uid
 ---
 
