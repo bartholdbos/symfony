@@ -29,7 +29,7 @@ class SendFailedMessageToFailureTransportListener implements EventSubscriberInte
 {
     public function __construct(
         private ContainerInterface $failureSenders,
-        private array $failureTransportsByName,
+        private array $failureTransportsByName = [],
         private ?LoggerInterface $logger = null,
     ) {
     }

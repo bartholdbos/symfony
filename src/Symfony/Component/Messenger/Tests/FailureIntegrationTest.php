@@ -281,8 +281,7 @@ class FailureIntegrationTest extends TestCase
 
         $dispatcher->addSubscriber(new SendFailedMessageForRetryListener($locator, new Container()));
         $dispatcher->addSubscriber(new SendFailedMessageToFailureTransportListener(
-            $sendersLocatorFailureTransport,
-            new NullLogger()
+            $sendersLocatorFailureTransport
         ));
         $dispatcher->addSubscriber(new StopWorkerOnMessageLimitListener(1));
 

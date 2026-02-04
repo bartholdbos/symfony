@@ -81,7 +81,7 @@ class SendFailedMessageToFailureTransportListenerTest extends TestCase
         $sender = $this->createMock(SenderInterface::class);
         $sender->expects($this->never())->method('send');
 
-        $listener = new SendFailedMessageToFailureTransportListener(new ServiceLocator([]), null);
+        $listener = new SendFailedMessageToFailureTransportListener(new ServiceLocator([]));
 
         $exception = new \Exception('no!');
         $envelope = new Envelope(new \stdClass());
